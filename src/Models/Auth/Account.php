@@ -5,6 +5,7 @@ namespace ThibaudDT\LaravelTrinityCoreAuth\Models\Auth;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Passport\HasApiTokens;
 
 /**
  * Class Account
@@ -18,7 +19,7 @@ use Illuminate\Notifications\Notifiable;
 
 class Account extends Authenticatable
 {
-    use Notifiable;
+    use HasApiTokens, Notifiable;
 
     protected $connection = "auth";
     protected $table = "account";
@@ -42,7 +43,7 @@ class Account extends Authenticatable
      *
      * @var array
      */
-    protected $fillable = ['username', 'sha_pass_hash', 'email', 'reg_mail', 'expansion'];
+    protected $fillable = ['username', 'sha_pass_hash', 'password', 'email', 'reg_mail', 'expansion'];
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -50,7 +51,7 @@ class Account extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'remember_token', 'sha_pass_hash',
+        'remember_token', 'sha_pass_hash','password',
     ];
 
     /**

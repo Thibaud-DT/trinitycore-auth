@@ -12,17 +12,17 @@
 */
 
 // Authentication Routes...
-Route::get('/login', 'LoginController@showLoginForm')->name('login');
-Route::post('/login', 'LoginController@login');
-Route::get('/logout', 'LoginController@logout')->name('logout');
+Route::get('/login', '\ThibaudDT\LaravelTrinityCoreAuth\Http\Controllers\Auth\LoginController@showLoginForm')->name('login');
+Route::post('/login', '\ThibaudDT\LaravelTrinityCoreAuth\Http\Controllers\Auth\LoginController@login');
+Route::post('/logout', '\ThibaudDT\LaravelTrinityCoreAuth\Http\Controllers\Auth\LoginController@logout')->name('logout');
 
 // Registration Routes...
-Route::get('/register', 'RegisterController@showRegistrationForm')->name('register');
-Route::post('/register', 'RegisterController@register');
+Route::get('/register', '\ThibaudDT\LaravelTrinityCoreAuth\Http\Controllers\Auth\RegisterController@showRegistrationForm')->name('register');
+Route::post('/register', '\ThibaudDT\LaravelTrinityCoreAuth\Http\Controllers\Auth\RegisterController@register');
 
 // Password Reset Routes...
 
-Route::post("password/email", 'ForgotPasswordController@sendResetLinkEmail');
-Route::get("password/reset", 'ForgotPasswordController@showLinkRequestForm')->name('reset');
-Route::post("password/reset", 'ResetPasswordController@reset');
-Route::get("password/reset/{token?}", 'ResetPasswordController@showResetForm');
+Route::post("password/email", '\ThibaudDT\LaravelTrinityCoreAuth\Http\Controllers\Auth\ForgotPasswordController@sendResetLinkEmail');
+Route::get("password/reset", '\ThibaudDT\LaravelTrinityCoreAuth\Http\Controllers\Auth\ForgotPasswordController@showLinkRequestForm')->name('reset');
+Route::post("password/reset", '\ThibaudDT\LaravelTrinityCoreAuth\Http\Controllers\Auth\ResetPasswordController@reset');
+Route::get("password/reset/{token?}", '\ThibaudDT\LaravelTrinityCoreAuth\Http\Controllers\Auth\ResetPasswordController@showResetForm');

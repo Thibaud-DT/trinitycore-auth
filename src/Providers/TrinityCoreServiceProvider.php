@@ -6,7 +6,6 @@ use Auth;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Contracts\Foundation\Application;
-use Illuminate\Support\Facades\Route;
 
 use Illuminate\Contracts\Auth\Guard as IlluminateGuard;
 use Illuminate\Contracts\Hashing\Hasher as IlluminateHasher;
@@ -15,6 +14,7 @@ use ThibaudDT\LaravelTrinityCoreAuth\Guard\TrinityCoreGuard;
 use ThibaudDT\LaravelTrinityCoreAuth\Hashing\TrinityCoreHasher;
 
 use ThibaudDT\LaravelTrinityCoreAuth\Models\Auth\Account;
+use ThibaudDT\LaravelTrinityCoreAuth\TrinityCore;
 
 /**
  * Class TrinityCoreServiceProvider
@@ -49,11 +49,11 @@ class TrinityCoreServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        $this->loadMigrationsFrom(__DIR__.'/../../database/migrations');
+
         $this->registerAuthProvider();
 
         $this->publishConfigs();
-
-        $this->defineRoutes();
     }
 
 
@@ -83,21 +83,6 @@ class TrinityCoreServiceProvider extends ServiceProvider
     }
 
     /**
-     * Define the Auth routes.
-     *
-     * @return void
-     */
-    protected function defineRoutes()
-    {
-        Route::group([
-            'namespace' =>  'ThibaudDT\LaravelTrinityCoreAuth\Http\Controllers\Auth',
-            'middleware' => 'web'
-        ], function ($router) {
-            require __DIR__.'/../Http/routes.php';
-        });
-    }
-
-    /**
      * Register bindings in the container.
      *
      *
@@ -113,6 +98,9 @@ class TrinityCoreServiceProvider extends ServiceProvider
         $this->app->tag(IlluminateGuard::class, 'TrinityCore');
 
         // $this->app->bind(IlluminateGuard::class, TrinityCoreGuard::class);
+        $this->app->bind('trinitycore', function(){
+            return new TrinityCore();
+        });
     }
 
     /**

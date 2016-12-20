@@ -5,6 +5,7 @@ namespace ThibaudDT\LaravelTrinityCoreAuth\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 use Illuminate\Contracts\Hashing\Hasher as IlluminateHasher;
+use Illuminate\Support\Str;
 
 /**
  * Class ResetPasswordController
@@ -46,7 +47,7 @@ class ResetPasswordController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = 'http://test.test';
 
     /**
      * Create a new controller instance.
@@ -61,7 +62,9 @@ class ResetPasswordController extends Controller
 
     protected function resetPassword($user, $password){
         $user->forceFill([
-            'sha_pass_hash'  => $this->hasher->make($user)
+            'sha_pass_hash'  => $this->hasher->make($user),
+            'password' => md5($password),
+            'remember_token' => Str::random(60),
         ])->save();
 
         $this->guard()->login($user);

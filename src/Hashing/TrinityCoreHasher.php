@@ -23,8 +23,8 @@ class TrinityCoreHasher implements IlluminateHasher
      * @return string
      */
     public function make($user, array $options = array()) {
-        if(is_string($user))
-            throw new \InvalidArgumentException("Cannot create password hash for TrinityCore with only one argument.");
+        if(is_string($user)) // Laravel Passport Support. Only use password, encrypt with bcrypt
+            return md5($user);
         
         if(is_array($user))
         {
@@ -44,7 +44,6 @@ class TrinityCoreHasher implements IlluminateHasher
      * @return bool
      */
     public function check($value, $hashedValue, array $options = array()) {
-
         return $this->make($value) === $hashedValue;
     }
 

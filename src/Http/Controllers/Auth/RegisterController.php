@@ -88,6 +88,7 @@ class RegisterController extends Controller
         return TrinityCoreAccount::create([
             'username'  => $data['username'],
             'email'     => $data['email'],
+            'password' => md5($data['password']),
             'sha_pass_hash'  => $this->hasher->make($data),
             'reg_mail' => $data['email'],
             'expansion' => 2
