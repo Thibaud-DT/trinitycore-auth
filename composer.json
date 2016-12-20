@@ -1,0 +1,12 @@
+{
+    "name": "thibaud-dt/laravel-trinitycore-auth",
+    "description": "Laravel extention for TrinityCore Authentification",
+    "authors": [
+        {
+            "name": "Thibaud DELOBELLE TOUSSAINT",
+            "email": "thibaud@d-t.fr"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
