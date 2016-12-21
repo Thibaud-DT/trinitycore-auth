@@ -1,6 +1,6 @@
 <?php
 
-namespace ThibaudDT\LaravelTrinityCoreAuth\Hashing;
+namespace ThibaudDT\TrinityCoreAuth\Hashing;
 
 use Illuminate\Contracts\Hashing\Hasher as IlluminateHasher;
 
@@ -8,7 +8,7 @@ use Illuminate\Contracts\Hashing\Hasher as IlluminateHasher;
  * Class TrinityCoreHasher
  *
  * @category Hasher
- * @package  ThibaudDT\LaravelTrinityCoreAuth\Hashing
+ * @package  ThibaudDT\TrinityCoreAuth\Hashing
  * @author   Thibaud DELOBELLE TOUSSAINT <thibaud@d-t.fr>
  * @license  GNU
  * @link     https://github.com/Thibaud-DT/laravel-trinitycore
@@ -23,14 +23,15 @@ class TrinityCoreHasher implements IlluminateHasher
      * @return string
      */
     public function make($user, array $options = array()) {
-        if(is_string($user)) // Laravel Passport Support. Only use password, encrypt with bcrypt
-            return md5($user);
+        if(is_string($user))
+            throw new \InvalidArgumentException("Cannot create password hash for TrinityCore with only one argument.");
         
         if(is_array($user))
         {
             // cast $user Array to Object, no need to instantiate a Collection here.
             $user = (object)$user;
         }
+
 
         return SHA1(strtoupper($user->username.':'.$user->password));
     }
@@ -44,6 +45,7 @@ class TrinityCoreHasher implements IlluminateHasher
      * @return bool
      */
     public function check($value, $hashedValue, array $options = array()) {
+
         return $this->make($value) === $hashedValue;
     }
 

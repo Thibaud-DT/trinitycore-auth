@@ -6,7 +6,7 @@
     
     [...]
     
-    ThibaudDT\LaravelTrinityCoreAuth\Providers\TrinityCoreServiceProvider::class,
+    ThibaudDT\TrinityCoreAuth\Providers\TrinityCoreAuthServiceProvider::class,
     
     [...]
 ]
@@ -20,7 +20,7 @@
     
     [...]
     
-    'TrinityCore' => ThibaudDT\LaravelTrinityCoreAuth\Facades\TrinityCore::class,
+    'TrinityCoreAuth' => ThibaudDT\TrinityCoreAuth\Facades\TrinityCore::class,
     
     [...]
 ]
@@ -33,7 +33,7 @@ php artisan migrate
 - Generate Auth Route in routes/web.php with :
 
 ```
-TrinityCore::auth(); 
+TrinityCoreAuth::routes(); 
 ```
 
 
@@ -63,7 +63,7 @@ DB_PASSWORD_AUTH=root
 'providers' => [
         'users' => [
             'driver' => 'trinitycore',
-            'model' => ThibaudDT\LaravelTrinityCoreAuth\Models\Auth\Account::class,
+            'model' => ThibaudDT\TrinityCoreAuth\Models\Auth\Account::class,
         ],
 
         // 'users' => [

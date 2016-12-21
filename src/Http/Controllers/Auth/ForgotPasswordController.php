@@ -1,18 +1,21 @@
 <?php
 
-namespace ThibaudDT\LaravelTrinityCoreAuth\Http\Controllers\Auth;
+namespace ThibaudDT\TrinityCoreAuth\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Password;
 
 /**
  * Class ForgotPasswordController
  *
  * @category Controller
- * @package  ThibaudDT\LaravelTrinityCoreAuth\Http\Controllers\Auth
+ * @package  ThibaudDT\TrinityCoreAuth\Http\Controllers\Auth
  * @author   Thibaud DELOBELLE TOUSSAINT <thibaud@d-t.fr>
  * @license  GNU
- * @link     https://github.com/Thibaud-DT/laravel-trinitycore
+ * @link     https://github.com/Thibaud-DT/trinitycore-auth
  */
 class ForgotPasswordController extends Controller
 {
@@ -38,4 +41,5 @@ class ForgotPasswordController extends Controller
     {
         $this->middleware('guest');
     }
+
 }

@@ -1,12 +1,12 @@
 <?php
 
-namespace ThibaudDT\LaravelTrinityCoreAuth;
+namespace ThibaudDT\TrinityCoreAuth;
 
 use Illuminate\Support\Facades\Route;
 
 class TrinityCore{
 
-    public function auth(){
+    public function routes(){
         Route::group([], function ($router) {
             require __DIR__.'/Http/routes.php';
         });

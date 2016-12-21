@@ -1,25 +1,25 @@
 <?php
 
-namespace ThibaudDT\LaravelTrinityCoreAuth\Providers;
+namespace ThibaudDT\TrinityCoreAuth\Providers;
 
 use Illuminate\Auth\EloquentUserProvider;
-use \Illuminate\Contracts\Auth\Authenticatable as UserContract;
-use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Contracts\Auth\Authenticatable as UserContract;
 use Illuminate\Contracts\Hashing\Hasher;
 use Illuminate\Foundation\Auth\User;
+use ThibaudDT\TrinityCoreAuth\Models\Auth\Account;
 
 /**
  * Class AccountProvider
  *
  * @category Provider
- * @package  ThibaudDT\LaravelTrinityCoreAuth\Providers
+ * @package  ThibaudDT\TrinityCoreAuth\Providers
  * @author   Thibaud DELOBELLE TOUSSAINT <thibaud@d-t.fr>
  * @license  GNU
- * @link     https://github.com/Thibaud-DT/laravel-trinitycore
+ * @link     https://github.com/Thibaud-DT/trinitycore-auth
  */
 class AccountProvider extends EloquentUserProvider
 {
-    public function __construct(Hasher $hasher, Authenticatable $model)
+    public function __construct(Hasher $hasher, UserContract $model)
     {
         parent::__construct($hasher, $model);
     }
@@ -47,8 +47,7 @@ class AccountProvider extends EloquentUserProvider
      */
     public function createModel()
     {
-        $model = $this->model;
-        return $model instanceof User ? $model : app($model);
+        return $this->model;
     }
 
 }

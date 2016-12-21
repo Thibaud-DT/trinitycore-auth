@@ -1,6 +1,6 @@
 <?php
 
-namespace ThibaudDT\LaravelTrinityCoreAuth\Providers;
+namespace ThibaudDT\TrinityCoreAuth\Providers;
 
 use Auth;
 
@@ -10,22 +10,22 @@ use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\Auth\Guard as IlluminateGuard;
 use Illuminate\Contracts\Hashing\Hasher as IlluminateHasher;
 
-use ThibaudDT\LaravelTrinityCoreAuth\Guard\TrinityCoreGuard;
-use ThibaudDT\LaravelTrinityCoreAuth\Hashing\TrinityCoreHasher;
+use ThibaudDT\TrinityCoreAuth\Guard\TrinityCoreGuard;
+use ThibaudDT\TrinityCoreAuth\Hashing\TrinityCoreHasher;
 
-use ThibaudDT\LaravelTrinityCoreAuth\Models\Auth\Account;
-use ThibaudDT\LaravelTrinityCoreAuth\TrinityCore;
+use ThibaudDT\TrinityCoreAuth\Models\Auth\Account;
+use ThibaudDT\TrinityCoreAuth\TrinityCore;
 
 /**
  * Class TrinityCoreServiceProvider
  *
  * @category Provider
- * @package  ThibaudDT\LaravelTrinityCoreAuth\Providers
+ * @package  ThibaudDT\TrinityCoreAuth\Providers
  * @author   Thibaud DELOBELLE TOUSSAINT <thibaud@d-t.fr>
  * @license  GNU
- * @link     https://github.com/Thibaud-DT/laravel-trinitycore
+ * @link     https://github.com/Thibaud-DT/trinitycore-auth
  */
-class TrinityCoreServiceProvider extends ServiceProvider
+class TrinityCoreAuthServiceProvider extends ServiceProvider
 {
 
 
@@ -53,7 +53,7 @@ class TrinityCoreServiceProvider extends ServiceProvider
 
         $this->registerAuthProvider();
 
-        $this->publishConfigs();
+        //$this->publishConfigs();
     }
 
 

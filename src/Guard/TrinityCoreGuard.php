@@ -1,22 +1,22 @@
 <?php
 
-namespace ThibaudDT\LaravelTrinityCoreAuth\Guard;
+namespace ThibaudDT\TrinityCoreAuth\Guard;
 
 use Illuminate\Auth\SessionGuard;
 use Illuminate\Http\Request;
 use Illuminate\Session\SessionInterface;
 use Illuminate\Contracts\Auth\Guard as IlluminateGuard;
 
-use ThibaudDT\LaravelTrinityCoreAuth\Providers\AccountProvider;
+use ThibaudDT\TrinityCoreAuth\Providers\AccountProvider;
 
 /**
  * Class TrinityCoreGuard
  *
  * @category Session\Guard
- * @package  ThibaudDT\LaravelTrinityCoreAuth\Guard
+ * @package  ThibaudDT\TrinityCoreAuth\Guard
  * @author   Thibaud DELOBELLE TOUSSAINT <thibaud@d-t.fr>
  * @license  GNU
- * @link     https://github.com/Thibaud-DT/laravel-trinitycore
+ * @link     https://github.com/Thibaud-DT/trinitycore-auth
  */
 
 class TrinityCoreGuard extends SessionGuard implements IlluminateGuard

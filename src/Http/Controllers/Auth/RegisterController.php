@@ -1,6 +1,6 @@
 <?php
 
-namespace ThibaudDT\LaravelTrinityCoreAuth\Http\Controllers\Auth;
+namespace ThibaudDT\TrinityCoreAuth\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
@@ -8,16 +8,16 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Contracts\Hashing\Hasher as IlluminateHasher;
 
 
-use ThibaudDT\LaravelTrinityCoreAuth\Models\Auth\Account as TrinityCoreAccount;
+use ThibaudDT\TrinityCoreAuth\Models\Auth\Account as TrinityCoreAccount;
 
 /**
  * Class RegisterController
  *
  * @category Controller
- * @package  ThibaudDT\LaravelTrinityCoreAuth\Http\Controllers\Auth
+ * @package  ThibaudDT\TrinityCoreAuth\Http\Controllers\Auth
  * @author   Thibaud DELOBELLE TOUSSAINT <thibaud@d-t.fr>
  * @license  GNU
- * @link     https://github.com/Thibaud-DT/laravel-trinitycore
+ * @link     https://github.com/Thibaud-DT/trinitycore-auth
  */
 class RegisterController extends Controller
 {
@@ -88,7 +88,6 @@ class RegisterController extends Controller
         return TrinityCoreAccount::create([
             'username'  => $data['username'],
             'email'     => $data['email'],
-            'password' => md5($data['password']),
             'sha_pass_hash'  => $this->hasher->make($data),
             'reg_mail' => $data['email'],
             'expansion' => 2

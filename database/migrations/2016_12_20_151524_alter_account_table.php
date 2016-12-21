@@ -14,7 +14,6 @@ class AlterAccountTable extends Migration
     public function up()
     {
         Schema::connection('auth')->table('account', function ($table) {
-            $table->string('password');
             $table->string('remember_token', 100)->nullable();
         });
     }
@@ -27,7 +26,6 @@ class AlterAccountTable extends Migration
     public function down()
     {
         Schema::connection('auth')->table('account', function ($table) {
-            $table->dropColumn('password');
             $table->dropColumn('remember_token');
         });
     }
