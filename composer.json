@@ -20,7 +20,7 @@
     "minimum-stability": "dev",
     "require": {
         "php": "^5.5.9 || ^7.0",
-        "thibaud-dt/trinitycore-models": ">=dev-master"
+        "thibaud-dt/trinitycore-models": ">=dev-master@dev"
     },
     "autoload": {
         "psr-4": {
