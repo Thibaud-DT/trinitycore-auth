@@ -63,12 +63,18 @@ class ResetPasswordController extends Controller
     }
 
     protected function resetPassword($user, $password){
-        $user->forceFill([
+        $data = [
             'sha_pass_hash'  => $this->hasher->make([
                 'username' => $user->username,
                 'password' => $password]),
             'remember_token' => Str::random(60),
-        ])->save();
+        ];
+
+        if(config('trinitycore-auth.passport')){
+            $data['password'] = md5($password);
+        }
+
+        $user->forceFill($data)->save();
     }
 
 }

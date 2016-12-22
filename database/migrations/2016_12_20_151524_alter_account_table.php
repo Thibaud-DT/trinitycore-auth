@@ -15,6 +15,9 @@ class AlterAccountTable extends Migration
     {
         Schema::connection('auth')->table('account', function ($table) {
             $table->string('remember_token', 100)->nullable();
+            if(config('trinitycore-auth.passport')){
+                $table->string('password');
+            }
         });
     }
 
@@ -27,6 +30,10 @@ class AlterAccountTable extends Migration
     {
         Schema::connection('auth')->table('account', function ($table) {
             $table->dropColumn('remember_token');
+            if (Schema::connection('auth')->hasColumn('account', 'password'))
+            {
+                $table->dropColumn('votes');
+            }
         });
     }
 }

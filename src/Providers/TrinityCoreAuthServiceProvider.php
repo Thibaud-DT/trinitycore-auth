@@ -53,7 +53,7 @@ class TrinityCoreAuthServiceProvider extends ServiceProvider
 
         $this->registerAuthProvider();
 
-        //$this->publishConfigs();
+        $this->publishConfigs();
     }
 
 
@@ -65,7 +65,7 @@ class TrinityCoreAuthServiceProvider extends ServiceProvider
     protected function publishConfigs()
     {
         $this->publishes([
-            __DIR__ . '/../../config/config.php' => config_path('trinitycore.php'),
+            __DIR__ . '/../../config/config.php' => config_path('trinitycore-auth.php'),
         ]);
     }
 

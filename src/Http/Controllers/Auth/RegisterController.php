@@ -8,7 +8,7 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Contracts\Hashing\Hasher as IlluminateHasher;
 
 
-use ThibaudDT\TrinityCoreAuth\Models\Auth\Account as TrinityCoreAccount;
+use ThibaudDT\TrinityCoreAuth\Models\Auth\Account;
 
 /**
  * Class RegisterController
@@ -72,7 +72,7 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'username'  => 'required|max:255|unique:auth.account',
-            'email'     => 'required|email|max:255|unique:auth.account',
+            'email'     => 'required|email|max:255|unique:auth.account|unique:auth.account,reg_mail',
             'password'  => 'required|min:6|confirmed',
         ]);
     }
@@ -85,12 +85,22 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return TrinityCoreAccount::create([
+
+        $account = [
             'username'  => $data['username'],
             'email'     => $data['email'],
-            'sha_pass_hash'  => $this->hasher->make($data),
+            'sha_pass_hash'  => $this->hasher->make([
+                'username' => $data['username'],
+                'password' => $data['password']
+            ]),
             'reg_mail' => $data['email'],
             'expansion' => 2
-        ]);
+        ];
+
+        if(config('trinitycore-auth.passport')){
+            $account['password'] = md5($data['password']);
+        }
+
+        return Account::create($account);
     }
 }

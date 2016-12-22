@@ -30,10 +30,18 @@ class Account extends AccountTrinityCore implements
     use Notifiable, Authenticatable, Authorizable, CanResetPassword;
 
 
+
     function __construct(array $attributes = [])
     {
-        parent::__construct($attributes);
         $this->hidden[] ='remember_token';
+
+        if(config('trinitycore-auth.passport')){
+            $this->hidden[] ='password';
+            $this->fillable[] ='password';
+        }
+
+        parent::__construct($attributes);
+
     }
 
     /**
