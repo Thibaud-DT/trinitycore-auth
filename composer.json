@@ -17,8 +17,7 @@
             "role": "Developer"
         }
     ],
-    "version": "0.1.0-dev",
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
     "require": {
         "php": "^5.5.9 || ^7.0",
         "thibaud-dt/trinitycore-models": ">=0.1.0-dev"
