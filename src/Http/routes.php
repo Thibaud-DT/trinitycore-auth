@@ -22,7 +22,7 @@ Route::post('/register', '\ThibaudDT\TrinityCoreAuth\Http\Controllers\Auth\Regis
 
 // Password Reset Routes...
 
-Route::post("password/email", '\ThibaudDT\TrinityCoreAuth\Http\Controllers\Auth\ForgotPasswordController@sendResetLinkEmail');
-Route::get("password/reset", '\ThibaudDT\TrinityCoreAuth\Http\Controllers\Auth\ForgotPasswordController@showLinkRequestForm')->name('reset');
+Route::get("password/reset", '\ThibaudDT\TrinityCoreAuth\Http\Controllers\Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+Route::post("password/email", '\ThibaudDT\TrinityCoreAuth\Http\Controllers\Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+Route::get("password/reset/{token?}", '\ThibaudDT\TrinityCoreAuth\Http\Controllers\Auth\ResetPasswordController@showResetForm')->name('password.reset');
 Route::post("password/reset", '\ThibaudDT\TrinityCoreAuth\Http\Controllers\Auth\ResetPasswordController@reset');
-Route::get("password/reset/{token?}", '\ThibaudDT\TrinityCoreAuth\Http\Controllers\Auth\ResetPasswordController@showResetForm');
