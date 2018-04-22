@@ -27,5 +27,15 @@
         "psr-4": {
             "ThibaudDT\\TrinityCoreAuth\\": "src/"
         }
+    },
+    "extra": {
+    "laravel": {
+      "providers": [
+        "ThibaudDT\\TrinityCoreAuth\\Providers\\TrinityCoreAuthServiceProvider"
+      ],
+      "aliases": {
+        "ThibaudDT": "Flashadvocate\\TrinityCoreAuth\\Facades\\TrinityCore"
+      }
     }
+  }
 }
