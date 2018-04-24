@@ -125,6 +125,6 @@ class TrinityCoreAuthServiceProvider extends ServiceProvider
 
     private function getMigrationsPath()
     {
-        return __DIR__ . '/../database/migrations/';
+        return __DIR__ . '/../../database/migrations/';
     }
 }
