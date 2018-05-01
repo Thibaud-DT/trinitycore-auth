@@ -49,11 +49,11 @@ class TrinityCoreAuthServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->loadMigrationsFrom(__DIR__.'/../../database/migrations');
-
         $this->registerAuthProvider();
 
         $this->publishConfigs();
+        
+        $this->publishMigrations();
     }
 
 
@@ -115,5 +115,16 @@ class TrinityCoreAuthServiceProvider extends ServiceProvider
             TrinityCoreHasher::class,
             TrinityCoreGuard::class
         ];
+    }
+    
+    private function publishMigrations()
+    {
+        $path = $this->getMigrationsPath();
+        $this->publishes([$path => database_path('migrations')], 'migrations');
+    }
+
+    private function getMigrationsPath()
+    {
+        return __DIR__ . '/../../database/migrations/';
     }
 }
