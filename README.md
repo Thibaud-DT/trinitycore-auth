@@ -1,4 +1,4 @@
-TrinityCore Authentication for Laravel 5.3 
+TrinityCore Authentication for Laravel 5.6 
 =======================
 
 [![Latest Stable Version](https://poser.pugx.org/thibaud-dt/trinitycore-auth/version?format=flat)](https://packagist.org/packages/thibaud-dt/trinitycore-auth)
@@ -6,7 +6,7 @@ TrinityCore Authentication for Laravel 5.3
 [![Total Downloads](https://poser.pugx.org/thibaud-dt/trinitycore-auth/downloads?format=flat)](https://packagist.org/packages/thibaud-dt/trinitycore-auth)
 [![License](https://poser.pugx.org/thibaud-dt/trinitycore-auth/license?format=flat)](https://packagist.org/packages/thibaud-dt/trinitycore-auth)
 
-Laravel 5.3 Library for authentication based on TrinityCore Database.
+Laravel 5.6 package for authentication based on TrinityCore Database.
 
 TrinityCore authentication is based on a sha1 hash of a concatenation of username and password.
 
@@ -16,6 +16,7 @@ Requirements
 
 * PHP >= 5.5.9 || 7.0
 * thibaud-dt/trinitycore-models >= dev-master
+* Laravel => 5.6
 
 Installation
 ============
@@ -177,3 +178,4 @@ Credits
 =======
 
 * The community of [TrinityCore](https://www.trinitycore.org/]) for the awesome work !
+* [flashadvocate](https://github.com/flashadvocate) for the work it does !
