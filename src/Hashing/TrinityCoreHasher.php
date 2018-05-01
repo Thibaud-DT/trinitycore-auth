@@ -61,4 +61,15 @@ class TrinityCoreHasher implements IlluminateHasher
     public function needsRehash($hashedValue, array $options = array()) {
         return false;
     }
+    
+    /**
+     * Get information about the given hashed value.
+     *
+     * @param  string $hashedValue
+     * @return void
+     */
+    public function info($hashedValue)
+    {
+        // TODO: Implement info() method.
+    }
 }
