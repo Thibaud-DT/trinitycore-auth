@@ -14,7 +14,7 @@
 // Authentication Routes...
 Route::get('/login', '\ThibaudDT\TrinityCoreAuth\Http\Controllers\Auth\LoginController@showLoginForm')->name('login');
 Route::post('/login', '\ThibaudDT\TrinityCoreAuth\Http\Controllers\Auth\LoginController@login');
-Route::get('/logout', '\ThibaudDT\TrinityCoreAuth\Http\Controllers\Auth\LoginController@logout')->name('logout');
+Route::post('/logout', '\ThibaudDT\TrinityCoreAuth\Http\Controllers\Auth\LoginController@logout')->name('logout');
 
 // Registration Routes...
 Route::get('/register', '\ThibaudDT\TrinityCoreAuth\Http\Controllers\Auth\RegisterController@showRegistrationForm')->name('register');
