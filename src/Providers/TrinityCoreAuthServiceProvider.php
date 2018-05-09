@@ -3,16 +3,12 @@
 namespace ThibaudDT\TrinityCoreAuth\Providers;
 
 use Auth;
-
-use Illuminate\Support\ServiceProvider;
-use Illuminate\Contracts\Foundation\Application;
-
 use Illuminate\Contracts\Auth\Guard as IlluminateGuard;
+use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\Hashing\Hasher as IlluminateHasher;
-
+use Illuminate\Support\ServiceProvider;
 use ThibaudDT\TrinityCoreAuth\Guard\TrinityCoreGuard;
 use ThibaudDT\TrinityCoreAuth\Hashing\TrinityCoreHasher;
-
 use ThibaudDT\TrinityCoreAuth\Models\Auth\Account;
 use ThibaudDT\TrinityCoreAuth\TrinityCore;
 
@@ -52,21 +48,8 @@ class TrinityCoreAuthServiceProvider extends ServiceProvider
         $this->registerAuthProvider();
 
         $this->publishConfigs();
-        
+
         $this->publishMigrations();
-    }
-
-
-    /**
-     * Publishes the config stub(s)
-     *
-     * @return void
-     */
-    protected function publishConfigs()
-    {
-        $this->publishes([
-            __DIR__ . '/../../config/config.php' => config_path('trinitycore-auth.php'),
-        ]);
     }
 
     /**
@@ -80,6 +63,27 @@ class TrinityCoreAuthServiceProvider extends ServiceProvider
         Auth::provider('trinitycore', function (Application $app) {
             return new AccountProvider($app->make(IlluminateHasher::class), $app->make(Account::class));
         });
+    }
+
+    /**
+     * Publishes the config stub(s)
+     *
+     * @return void
+     */
+    protected function publishConfigs()
+    {
+        $this->publishes([
+            __DIR__ . '/../../config/config.php' => config_path('trinitycore-auth.php'),
+        ]);
+    }
+
+    private function publishMigrations()
+    {
+        $path = __DIR__ . '/../../database/migrations/';
+        $timestamp = date('Y_m_d_His', time());
+        $this->publishes([
+            $path . 'alter_account_table.php.stub' => database_path('migrations') . "{$timestamp}_alter_account_table.php",
+        ], 'migrations');
     }
 
     /**
@@ -98,7 +102,7 @@ class TrinityCoreAuthServiceProvider extends ServiceProvider
         $this->app->tag(IlluminateGuard::class, 'TrinityCore');
 
         // $this->app->bind(IlluminateGuard::class, TrinityCoreGuard::class);
-        $this->app->bind('trinitycore', function(){
+        $this->app->bind('trinitycore', function () {
             return new TrinityCore();
         });
     }
@@ -115,16 +119,5 @@ class TrinityCoreAuthServiceProvider extends ServiceProvider
             TrinityCoreHasher::class,
             TrinityCoreGuard::class
         ];
-    }
-    
-    private function publishMigrations()
-    {
-        $path = $this->getMigrationsPath();
-        $this->publishes([$path => database_path('migrations')], 'migrations');
-    }
-
-    private function getMigrationsPath()
-    {
-        return __DIR__ . '/../../database/migrations/';
     }
 }
