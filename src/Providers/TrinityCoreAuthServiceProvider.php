@@ -13,7 +13,6 @@ use Illuminate\Contracts\Hashing\Hasher as IlluminateHasher;
 use ThibaudDT\TrinityCoreAuth\Guard\TrinityCoreGuard;
 use ThibaudDT\TrinityCoreAuth\Hashing\TrinityCoreHasher;
 
-use ThibaudDT\TrinityCoreAuth\Models\Auth\Account;
 use ThibaudDT\TrinityCoreAuth\TrinityCore;
 
 /**
@@ -77,8 +76,8 @@ class TrinityCoreAuthServiceProvider extends ServiceProvider
      */
     protected function registerAuthProvider()
     {
-        Auth::provider('trinitycore', function (Application $app) {
-            return new AccountProvider($app->make(IlluminateHasher::class), $app->make(Account::class));
+        Auth::provider('trinitycore', function (Application $app, array $config) {
+            return new AccountProvider($app->make(IlluminateHasher::class), $app->make($config['model']));
         });
     }
 
