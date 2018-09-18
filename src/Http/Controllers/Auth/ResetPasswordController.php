@@ -70,10 +70,6 @@ class ResetPasswordController extends Controller
             'remember_token' => Str::random(60),
         ];
 
-        if(config('trinitycore-auth.passport')){
-            $data['password'] = md5($password);
-        }
-
         $user->forceFill($data)->save();
     }
 

@@ -23,19 +23,15 @@ class TrinityCoreHasher implements IlluminateHasher
      * @return string
      */
     public function make($data, array $options = array()) {
-        if(is_string($data)) {
-            if (config('trinitycore-auth.passport'))
-                return md5($data);
-            else
-                throw new \InvalidArgumentException("Cannot create password hash for TrinityCore with only one argument.");
-        }
         if(is_array($data))
         {
             // cast $user Array to Object, no need to instantiate a Collection here.
             $data = (object)$data;
         }
+        else
+            throw new \InvalidArgumentException('Cannot create password hash for TrinityCore with only one argument.');
 
-        return SHA1(strtoupper($data->username.':'.$data->password));
+        return strtoupper(bin2hex(strrev(hex2bin(strtoupper(hash('sha256',strtoupper(hash('sha256', strtoupper($data->username)).":".strtoupper($data->password))))))));
     }
 
     /**

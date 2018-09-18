@@ -34,12 +34,6 @@ class Account extends AccountTrinityCore implements
     function __construct(array $attributes = [])
     {
         $this->hidden[] ='remember_token';
-
-        if(config('trinitycore-auth.passport')){
-            $this->hidden[] ='password';
-            $this->fillable[] ='password';
-        }
-
         parent::__construct($attributes);
 
     }

@@ -94,12 +94,8 @@ class RegisterController extends Controller
                 'password' => $data['password']
             ]),
             'reg_mail' => $data['email'],
-            'expansion' => 2
+            'expansion' => config('trinitycore-auth.expansion')
         ];
-
-        if(config('trinitycore-auth.passport')){
-            $account['password'] = md5($data['password']);
-        }
 
         return Account::create($account);
     }
