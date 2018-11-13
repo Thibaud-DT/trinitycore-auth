@@ -132,7 +132,7 @@ Configuration
 
 | Configuration | Value type | Default value | Description |
 | :-------------:|:-------------:| :-----:| :-----:|
-| passport | boolean | false | Active the support of Laravel Passport |
+| expansion | int | 7 | Server expansion |
 
 Usage
 =====
@@ -166,13 +166,6 @@ Usage
 ```
 TrinityCoreAuth::routes(); 
 ```
-
-FAQ
-=====
-* Can I active the support of Laravel Passport before a first installation without ?
-
-Yes you can ! Change the configuration value to true and make a refresh of migrations. All accounts created before the 
-activation of the support of Laravel Passport must reset their password to use Password Grant Authorization system.
 
 Credits
 =======

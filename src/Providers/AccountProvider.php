@@ -34,7 +34,7 @@ class AccountProvider extends EloquentUserProvider
     {
 
         $password = $credentials['password'];
-        $username = array_key_exists('username', $credentials) ? $credentials['username'] : $this->model->whereEmail($credentials['email'])->FirstOrFail()->username;
+        $username = array_key_exists('username', $credentials) ? $credentials['username'] : $this->model->whereEmail($credentials['email'])->FirstOrFail()->email;
 
         return $this->hasher->check(compact('username', 'password'), $user->getAuthPassword());
     }
